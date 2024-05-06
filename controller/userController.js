@@ -10,7 +10,6 @@ const { userexist } = require("../middleware/userAuth");
 const { json } = require("express/lib/response");
 const Order = require("../model/orderSchema");
 require("dotenv").config();
-console.log(process.env.ACCOUNT_SID)
 
 const accountSid = "AC7ed272bfc72e23f5ea62dde1140be05b";
 const authToken = "58b139fb5d740b49a36f8f967f3c0cc9";

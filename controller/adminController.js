@@ -152,10 +152,7 @@ exports.dashboard = async (req, res) => {
 
   const data = await adminCollection.findOne({ email: req.body.email });
   if (data) {
-    console.log(data.email,"pass",data.password)
-   
     if (data.email == req.body.email && data.password == req.body.password) {
-      console.log("adminroute get called")
       req.session.adminuser = data;
       res.render("admin/dashboard.ejs", {
         totalRevenue: total,

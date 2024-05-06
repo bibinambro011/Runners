@@ -8,8 +8,7 @@ const adminroutes = require("./route/adminRoute");
 const nocache = require("nocache");
 const loger = require("morgan");
 const Swal = require('sweetalert2');
-require('dotenv').config()
-// console.log(process.env)
+
 const controller = require("./controller/userController");
 
 const sessions = require("express-session");
@@ -43,6 +42,6 @@ app.get('*', (req, res) => {
 });
 
 db.connectToDatabase();
-app.listen(process.env.PORT, () => {
+app.listen(3000, () => {
   console.log("listening to port 3000")
 });
