@@ -1,0 +1,164 @@
+
+<%-include("../partials/adminheader")-%>
+        <section class="content-main">
+            <div class="content-header">
+                <div>
+                    <h2 class="content-title card-title">Categories </h2>
+                    <p>Add, edit or delete a category</p>
+                </div>
+                <div>
+                    <input type="text" placeholder="Search Categories" class="form-control bg-white">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <form action="/admin/categoryadd" method="post" onsubmit="return validateForm()">
+                                <div class="form-group">
+                                    <label for="product_name" class="form-label">Name</label>
+                                    <input type="text" name="name" placeholder="Type here" class="form-control" id="product_name" />
+                                    <span id="error-category" style="color: red;"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="category_offer" class="form-label">Category Offer</label>
+                                    <input type="text" name="offer" placeholder="Type here" class="form-control" id="category_offer" />
+                                    <span id="error-offer" style="color: red;"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="startdate" class="form-label">offer From</label>
+                                    <input type="date" name="startdate" placeholder="Type here" class="form-control" id="offer-from" />
+                                    <span id="fromdatespan" style="color: red;"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="enddate" class="form-label">offer To</label>
+                                    <input type="date" name="enddate" placeholder="Type here" class="form-control" id="offer-To" />
+                                    <span id="todatespan" style="color: red;"></span>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Create category</button>
+                            </form>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" />
+                                                </div>
+                                            </th>
+                                            <th>ID</th>
+                                            <th>Status</th>
+                                            <th>Name</th>
+                                            <th>category offer</th>
+                                            <th>update</th>
+                                            <th>Action</th>
+                                            <!-- <th>Description</th>
+                                            <th>Slug</th>
+                                            <th>Order</th>
+                                            <th class="text-end">Action</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <% categorydata.forEach(category => { %>
+                                                <tr>
+                                              
+                                               
+                                            <td class="text-center">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" />
+                                                </div>
+                                            </td>
+                                            <td><%= category._id %></td>
+                                            <td><b><%= category.active %></b></td>
+                                            <td><b><%= category.name %></b></td>
+                                            <td><b><%= category.categoryOffer %> %</b></td>
+                                            <td>
+                                                <a class="btn btn-secondary btn-sm font-sm" href="/admin/categoryedit/<%= category._id %>">Edit</a>
+                                            </td>
+                                            
+
+                                           
+                                            <td class="text-end">
+                                                <td class="text-end">
+                                                    <div class="d-flex">
+                                                        <% if (category.active) { %>
+                                                            <a class="btn btn-danger rounded btn-sm font-sm" href="/admin/categoryblock/<%= category._id %>">Block</a>
+                                                        <% } else { %>
+                                                            <a class="btn btn-success rounded btn-sm font-sm" href="/admin/categoryunblock/<%= category._id %>">Unblock</a>
+                                                        <% } %>
+                                                    </div>
+                                                </td>
+                                                
+                                            </td>
+                                            
+                                        </tr>
+                                        <% }); %>
+                                       
+                                            </td> 
+                                        </tr>
+                                     
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div> <!-- .col// -->
+                    </div> <!-- .row // -->
+                </div> <!-- card body .// -->
+            </div> <!-- card .// -->
+        </section> <!-- content-main end// -->
+      
+        <%-include("../partials/adminfooter")-%>
+        <script>
+           
+            function validateForm() {
+                const categoryOfferInput = document.getElementById('category_offer');
+                if (categoryOfferInput.value.trim() === '') {
+        categoryOfferInput.value = '0';
+    }
+
+
+                const name = document.getElementById('product_name').value
+          
+
+                const errormessage=document.getElementById("error-category");
+                const categoryoffer=document.getElementById("category_offer").value 
+                const erroroffer=document.getElementById("error-offer");
+                const offerfrom=document.getElementById("offer-from").value
+             
+                const offerto=document.getElementById("offer-To").value
+              
+                const fromdate=document.getElementById("fromdatespan");
+                const todate=document.getElementById("todatespan")
+        
+                // Check if the name is empty
+                if (name.trim() === '') {
+                    errormessage.innerHTML="category field cannot be empty"
+                    return false;
+                }else if(categoryoffer<0){
+                    erroroffer.innerHTML="categery offer field cannot be less than 0";
+                    return false;
+                }else if(categoryoffer >75){
+                    erroroffer.innerHTML="categery offer cannot be greater than 75%";
+                    return false
+                }else if(categoryoffer >0 && offerfrom==""){
+                    fromdate.innerHTML="please select from date";
+                    return false;
+                }else if(offerfrom !="" && offerto==""){
+                    todate.innerHTML="please select To date";
+                    return false;
+                }else{
+                    return true;
+                }
+        
+                 // Submit the form if validation passes
+            }
+        </script>
+        
+        
+        
+        
+        
+        
+        

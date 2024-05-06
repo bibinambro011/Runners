@@ -1,0 +1,166 @@
+<%-include("../partials/userheader")-%>
+
+
+<body>
+  <section class="product-tabs pt-25 pb-20 wow fadeIn animated">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="widget-category mb-30">
+            <h5 class="section-title style-1 mb-30 wow fadeIn animated">
+              CATEGORY
+            </h5>
+            <ul class="categories">
+              <% if (categorydata && categorydata.length > 0) { %>
+                <% categorydata.forEach(category => { %>
+                  <li><a href="/productCategory/<%= category._id %>"><%= category.name %></a></li>
+                <% }); %>
+              <% } else { %>
+                <li>No categories available</li>
+              <% } %>
+              
+             
+              <!-- <li><a href="shop-grid-right.html">SPIKES</a></li>
+              <li><a href="shop-grid-right.html"> BOOTS</a></li> -->
+            </ul>
+          </div>
+          <div class="widget-category mb-30">
+            <h5 class="section-title style-1 mb-30 wow fadeIn animated">
+              BRANDS
+            </h5>
+            <ul class="categories">
+              <li><a href="/productBrand/?brand=ADIDAS">ADIDAS</a></li>
+              <li><a href="/productBrand/?brand=NIKE">NIKE</a></li>
+              <li><a href="/productBrand/?brand=PUMA"> PUMA</a></li>
+              <li><a href="/productBrand/?brand=UNDER ARMOUR">UNDER ARMOUR</a></li>
+              <li><a href="/productBrand/?brand=ASICS">ASICS</a></li>
+            </ul>
+          </div>
+          <div class="widget-category mb-30">
+            <h5 class="section-title style-1 mb-30 wow fadeIn animated">
+              SORT BY
+            </h5>
+            <ul class="categories">
+             
+              <li><a href="/priceLowToHigh">PRICE: LOW TO HIGH</a></li>
+              <li><a href="/priceHighToLow">PRICE: HIGH TO LOW</a></li>
+            </ul>
+          </div>
+        
+        </div>
+        <div class="col-lg-9">
+          
+          <div class="container">
+            <div class="tab-content wow fadeIn animated" id="myTabContent">
+              <div class="row product-grid-4">
+              <% let count = 0; %>
+              <% products.forEach(function(product) { %>
+             
+                 
+              
+                <div class="col-lg-4 col-md-4 col-12 col-sm-6">
+                  <div class="product-cart-wrap mb-30">
+                    <div class="product-img-action-wrap img-fluid" style="width: 350px; height: 310px;">
+                      <div class="product-img product-img-zoom">
+                        <a href="/product/<%= product._id %>">
+                          <img src="<%= product.images[0] %>" alt="<%= product.name %>" class="img-fluid rounded"/>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="product-content-wrap">
+                      <div class="product-category">
+                        <!-- <a href="#"><%= product.category %></a> -->
+                      </div>
+                      <h2>
+                        <a href="shop-product-right.html"><%= product.name %></a>
+                      </h2>
+                      <div class="rating-result" title="90%">
+                        <span>
+                          <span>90%</span>
+                        </span>
+                      </div>
+                      <div class="product-price">
+                        <span>Rs<%= product.selling_price %></span>
+                        <span class="old-price">Rs<%= product.price %></span>
+                        <% if (product.stock < 1) { %>
+                          <span class="old-price text-danger">Out of stock</span>
+                        <% } %>
+                      </div>
+                      <div class="product-action-1 show">
+                        <% if (product.stock >= 1) { %>
+                          <a aria-label="Add To Cart" class="action-btn hover-up" href="/addtocart/<%= product._id %>">
+                            <i class="fi-rs-shopping-bag-add"></i>
+                          </a>
+                        <% } else { %>
+                          <!-- Hide the button when stock is less than 1 -->
+                        <% } %>
+                        <a aria-label="Add To Wishlist" class="action-btn hover-up" href="/addtowishlist/<%= product._id %>">
+                          <i class="fi-rs-heart"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% if (++count % 3 === 0) { %>
+                </div>
+                <% if (count < products.length) { %>
+                    <div class="row product-grid-4">
+                <% } %>
+            <% } %>
+        <% }) %>
+            </div>
+          
+            <!-- Pagination -->
+            <div class="pagination-container">
+              <ul class="pagination">
+                  <% const totalPages = Math.ceil(products.length / 6); %>
+                  <!-- Page links -->
+                  <% for (let i = 1; i <= totalPages; i++) { %>
+                      <li class="page-item">
+                          <a class="page-link" href="#" data-page="<%= i %>"><%= i %></a>
+                      </li>
+                  <% } %>
+              </ul>
+          </div>
+           
+            <%- include("../partials/userfooter") -%>
+          </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    $(document).ready(function() {
+        const products = $('.product-cart-wrap');
+        const itemsPerPage = 6;
+        let currentPage = 1;
+        const totalPages = Math.ceil(products.length / itemsPerPage);
+
+        // Show the first page, hide the rest
+        showPage(currentPage);
+
+        // Handle pagination clicks
+        $('.page-link').on('click', function(e) {
+            e.preventDefault();
+            const targetPage = parseInt($(this).data('page'));
+            if (targetPage === currentPage) return; // Clicked on the current page
+
+            // Show the clicked page
+            showPage(targetPage);
+        });
+
+        function showPage(page) {
+            // Calculate the range of products to display for the given page
+            const startIndex = (page - 1) * itemsPerPage;
+            const endIndex = Math.min(startIndex + itemsPerPage, products.length);
+
+            // Show/hide products based on the page
+            products.hide();
+            products.slice(startIndex, endIndex).show();
+
+            // Update the current page
+            currentPage = page;
+        }
+    });
+
+  </script>
+</body>

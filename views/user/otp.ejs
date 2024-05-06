@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OTP Verification</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      max-width: 400px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .form-container input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-container button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      color: #fff;
+      background-color: #007BFF;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .form-container button:hover {
+      background-color: #0056b3;
+    }
+
+    .timer-button {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="form-container">
+  <p><%= locals.errordata ? locals.errordata : '' %></p>
+  <form action="/verifyotp">
+    <label for="verify">Enter your received OTP:</label>
+    <input type="text" id="verify" name="otp" />
+    <button type="submit">Verify</button>
+    <div class="timer-button">
+      <span>Time:</span>
+      <span id="timer">30</span> seconds
+    </div>
+  </form>
+
+  <form action="/regenerateotp" method="get">
+    <button>Regenerate OTP</button>
+  </form>
+</div>
+
+<script>
+  let seconds = 30;
+
+  const countdown = () => {
+    const timerElement = document.getElementById('timer');
+
+    const intervalId = setInterval(() => {
+      seconds--;
+      timerElement.innerText = seconds;
+
+      if (seconds === 0) {
+        clearInterval(intervalId);
+        timerElement.innerText = 'Time\'s up!';
+      }
+    }, 1000);
+  };
+
+  countdown();
+</script>
+
+</body>
+</html>

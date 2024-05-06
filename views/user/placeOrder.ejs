@@ -1,0 +1,101 @@
+<%-include("../partials/userheader")-%>
+
+<style>
+.contain{
+    margin-top: 100px;
+}
+
+    .error-message {
+        background-color: #f8d7da; /* Light red background */
+        color: #721c24; /* Dark red text color */
+        padding: 10px; /* Add some padding for spacing */
+        border: 1px solid #f5c6cb; /* Add a border for separation */
+        border-radius: 5px; /* Rounded corners */
+        font-size: 18px; /* Larger font size */
+    }
+
+
+</style>
+<!-- <div class="error-message">
+    <h1><%= locals.error ? error : '' %></h1>
+</div> -->
+<input type="hidden" class="err" data-error="<%= locals.error%>">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+   let error= document.querySelector(".err").getAttribute('data-error');
+   if(error){
+    Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: error
+            });
+   }
+</script>
+
+
+<div class="row mb-50 contain">
+    <div class="col-lg-6 col-md-12">
+     
+        <div class="mb-30 mt-50">
+            <div class="heading_s1 mb-3">
+                <h4>Apply Coupon</h4>
+            </div>
+            <div class="total-amount">
+                <div class="left">
+                    <div class="coupon">
+                        <form action="/applyCoupon"  method="post">
+                            <div class="form-row row justify-content-center">
+                                <div class="form-group col-lg-6">
+                                    <input class="font-medium" name="Couponcode" placeholder="Enter Your Coupon " >
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <button class="btn  btn-sm"><i class="fi-rs-label mr-10"></i>Apply</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-">
+        <div class="border p-md-4 p-30 border-radius cart-totals">
+            <div class="heading_s1 mb-3">
+                <h4>Cart Totals</h4>
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td class="cart_total_label">Cart Subtotal</td>
+                            <td class="cart_total_amount"><span class="font-xl fw-900 text-brand" id="totalSumDisplay"><p><%=locals.originaltotal ? originaltotal:''%></span>
+
+                        </tr>
+                        <tr>
+                            <td class="cart_total_label">coupon discount</td>
+                            <td class="cart_total_amount"><span class="font-xl fw-900 text-brand" id="totalSumDisplay"><p><%=locals.discountAmount ? discountAmount:'0'%></span>
+
+                        </tr>
+                        <tr>
+                            <td class="cart_total_label">Shipping</td>
+                            <td class="cart_total_amount"> <i class="ti-gift mr-5"></i> Free Shipping</td>
+                        </tr>
+                        <tr>
+                            <td class="cart_total_label">Total</td>
+                            <td class="cart_total_amount"><strong><span class="font-xl fw-900 text-brand" id="totalSumDisplay"><%=locals.carttototal ? carttototal:''%></span>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+          
+            <a href="/checkoutpage?discountAmount=<%= locals.discountAmount ? locals.discountAmount : '0' %><%= locals.code ? `&code=${locals.code}` : '' %>" class="btn">
+                <i class="fi-rs-box-alt mr-10"></i> Proceed To CheckOut
+              </a>
+              
+           
+        </div>
+    </div>
+</div>
+
+<%-include("../partials/userfooter")-%>

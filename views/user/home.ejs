@@ -1,0 +1,614 @@
+
+        
+        <%-include("../partials/userheader")-%>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script>
+              // Get the URL parameters
+const urlParams = new URLSearchParams(window.location.search);
+const reason = urlParams.get("reason");
+
+// Check if the reason is "blocked by admin"
+if (reason === "blocked by admin") {
+  // Trigger a SweetAlert with the blocked message
+  Swal.fire({
+    icon: 'error',
+    title: 'Blocked by Admin',
+    text: 'You have been blocked by an admin. Please contact support for more information.',
+  });
+}
+        </script>
+      
+
+
+
+        
+
+    <div class="mobile-header-active mobile-header-wrapper-style">
+        <div class="mobile-header-wrapper-inner">
+            <div class="mobile-header-top">
+                <div class="mobile-header-logo">
+                    <a href="/userhome"><img src="/imgs/theme/rihanna.png" style="max-width: 90px; max-height: 70px;" alt="logo"></a>
+                </div>
+                <div class="mobile-menu-close close-style-wrap close-style-position-inherit">
+                    <button class="close-style search-close">
+                        <i class="icon-top"></i>
+                        <i class="icon-bottom"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="mobile-header-content-area">
+                <div class="mobile-search search-style-3 mobile-header-border">
+                    <form action="#">
+                        <input type="text" placeholder="Search for items…">
+                        <button type="submit"><i class="fi-rs-search"></i></button>
+                    </form>
+                </div>
+                
+                <div class="mobile-header-info-wrap mobile-header-border">
+                    <div class="single-mobile-header-info mt-30">
+                        <a  href="#"> Our location </a>
+                    </div>
+                    <div class="single-mobile-header-info">
+                        <a href="/login">Log In  </a>
+                        <a href="/signup"> Sign Up </a>
+                    </div>
+                    <div class="single-mobile-header-info">
+                        <a href="#">(+01) - 2345 - 6789 </a>
+                    </div>
+                </div>
+                <div class="mobile-social-icon">
+                    <h5 class="mb-15 text-grey-4">Follow Us</h5>
+                    <a href="#"><img src="/imgs/theme/icons/icon-facebook.svg" alt=""></a>
+                    <a href="#"><img src="/imgs/theme/icons/icon-twitter.svg" alt=""></a>
+                    <a href="#"><img src="/imgs/theme/icons/icon-instagram.svg" alt=""></a>
+                    <a href="#"><img src="/imgs/theme/icons/icon-pinterest.svg" alt=""></a>
+                    <a href="#"><img src="/imgs/theme/icons/icon-youtube.svg" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main class="main">       
+        <section class="home-slider position-relative pt-50">
+            <div class="hero-slider-1 dot-style-1 dot-style-1-position-1">
+                <div class="single-hero-slider single-animation-wrap">
+                    <div class="container">
+                        <div class="row align-items-center slider-animated-1">
+                            <!-- <div class="col-lg-12 col-md-12">
+                                <div class="hero-slider-content-2">
+                                    <h4 class="animated">Trade-in offer</h4>
+                                    <h2 class="animated fw-900">Supper value deals</h2>
+                                    <h1 class="animated fw-900 text-brand">On all products</h1>
+                                    <p class="animated">Save more with coupons & up to 70% off</p>
+                                    <a class="animated btn btn-brush btn-brush-3" href="/shop"> Shop Now </a>
+                                </div>
+                            </div> -->
+                            <div class="col-lg-12 col-md-12">
+                                <div class="single-slider-img single-slider-img-1">
+                                    <a href="/shop">
+                                    <img class="animated slider-1-1" src="/imgs/banner/sportsbanner21.jpeg" alt=""  class="mx-auto" style="width: 100%;">
+                                </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="single-hero-slider single-animation-wrap">
+                    <div class="container">
+                        <div class="row align-items-center slider-animated-1">
+                            <!-- <div class="col-lg-5 col-md-6">
+                                <div class="hero-slider-content-2">
+                                    <h4 class="animated">Hot promotions</h4>
+                                    <h2 class="animated fw-900">Fashion Trending</h2>
+                                    <h1 class="animated fw-900 text-7">Great Collection</h1>
+                                    <p class="animated">Save more with coupons & up to 20% off</p>
+                                    <a class="animated btn btn-brush btn-brush-2" href="/shop"> Discover Now </a>
+                                </div>
+                            </div> -->
+                            <div class="col-lg-12 col-md-12">
+                                <div class="single-slider-img single-slider-img-1">
+                                    <a href="/shop">
+                                    <img class="animated slider-1-2" src="/imgs/banner/sportsbanner22.jpeg" class="mx-auto" style="width: 100%;" alt="">
+                                </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="single-hero-slider single-animation-wrap">
+                    <div class="container">
+                        <div class="row align-items-center slider-animated-1">
+                            <!-- <div class="col-lg-5 col-md-6">
+                                <div class="hero-slider-content-2">
+                                    <h4 class="animated">Upcoming Offer</h4>
+                                    <h2 class="animated fw-900">Big Deals From</h2>
+                                    <h1 class="animated fw-900 text-8">Manufacturer</h1>
+                                    <p class="animated"> Shoes, spikes, boots...</p>
+                                    <a class="animated btn btn-brush btn-brush-1" href="/shop"> Shop Now </a>
+                                </div>
+                            </div> -->
+                            <div class="col-lg-12 col-md-12">
+                                <div class="single-slider-img single-slider-img-1">
+                                    <a href="/shop">    <img class="animated slider-1-3" src="/imgs/banner/sportsbanner23.jpeg" class="mx-auto" style="width: 100%;" alt=""></a>
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-arrow hero-slider-1-arrow"></div>
+        </section>
+       
+        <section class="product-tabs section-padding position-relative wow fadeIn animated">
+            <div class="bg-square"></div>
+            <div class="container">
+              
+                <!--End nav-tabs-->
+                <div class="container">
+                    <div class="tab-content wow fadeIn animated" id="myTabContent">
+                        <div class="row product-grid-4">
+                            <% let count = 0; %>
+                            <% products.forEach(function(product) { %>
+                           
+                               
+                            
+                              <div class="col-lg-4 col-md-4 col-12 col-sm-6">
+                                <div class="product-cart-wrap mb-30">
+                                  <div class="product-img-action-wrap img-fluid" style="width: 350px; height: 310px;">
+                                    <div class="product-img product-img-zoom">
+                                      <a href="/product/<%= product._id %>">
+                                        <img src="<%= product.images[0] %>" alt="<%= product.name %>" class="img-fluid rounded"/>
+                                      </a>
+                                    </div>
+                                  </div>
+                                  <div class="product-content-wrap">
+                                    <div class="product-category">
+                                     
+                                    </div>
+                                    <h2>
+                                      <a href="shop-product-right.html"><%= product.name %></a>
+                                    </h2>
+                                    <div class="rating-result" title="90%">
+                                      <span>
+                                        <span>90%</span>
+                                      </span>
+                                    </div>
+                                    <div class="product-price">
+                                      <span>Rs<%= product.selling_price %></span>
+                                      <span class="old-price">Rs<%= product.price %></span>
+                                      <% if (product.stock < 1) { %>
+                                        <span class="old-price text-danger">Out of stock</span>
+                                      <% } %>
+                                    </div>
+                                    <div class="product-action-1 show">
+                                      <% if (product.stock >= 1) { %>
+                                        <a aria-label="Add To Cart" class="action-btn hover-up" href="/addtocart/<%= product._id %>">
+                                          <i class="fi-rs-shopping-bag-add"></i>
+                                        </a>
+                                      <% } else { %>
+                                        <!-- Hide the button when stock is less than 1 -->
+                                      <% } %>
+                                      <a aria-label="Add To Wishlist" class="action-btn hover-up" href="/addtowishlist/<%= product._id %>">
+                                        <i class="fi-rs-heart"></i>
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <% if (++count % 3 === 0) { %>
+                              </div>
+                              <% if (count < products.length) { %>
+                                  <div class="row product-grid-4">
+                              <% } %>
+                          <% } %>
+                      <% }) %>
+                          </div>
+                        
+                          <!-- Pagination -->
+                          <div class="pagination-container">
+                            <ul class="pagination">
+                                <% const totalPages = Math.ceil(products.length / 6); %>
+                                <!-- Page links -->
+                                <% for (let i = 1; i <= totalPages; i++) { %>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" data-page="<%= i %>"><%= i %></a>
+                                    </li>
+                                <% } %>
+                            </ul>
+                        </div>
+                 
+                </div>
+                        
+                    </div>
+                    <!--En tab one (Featured)-->
+                   
+                    <!--En tab two (Popular)-->
+                 
+                    <!--En tab three (New added)-->
+                </div>
+                <!--End tab-content-->
+            </div>
+        </section>
+        <section class="banner-2 section-padding pb-0">
+            <div class="container">
+                <div class="banner-img banner-big wow fadeIn animated f-none">
+                    <img src="/imgs/banner/sportsbanner1.jpg" alt="">
+                    <div class="banner-text d-md-block d-none">
+                        <h4 class="mb-15 mt-40 text-brand">Repair Services</h4>
+                        <h1 class="fw-600 mb-20">We're an Adidas<br>Authorised Service Provider</h1>
+                        <a href="#" class="btn">Learn More <i class="fi-rs-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+      
+        <section class="banners mb-15">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="banner-img wow fadeIn animated">
+                            <img src="/imgs/banner/woman3.jpg" alt="">
+                            <div class="banner-text">
+                                <span style="color: white;">Smart Offer</span>
+                                <h4 style="color: white;">Save 20% on <br>Woman shoes</h4>
+                                <a href="/shop" style="color: white;">Shop Now <i class="fi-rs-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="banner-img wow fadeIn animated">
+                            <img src="/imgs/banner/woman4.jpg" alt="">
+                            <div class="banner-text">
+                                <span style="color: white;">Sale off</span>
+                                <h4 style="color: white;">Great Track <br>Collection</h4>
+                                <a href="/shop" style="color: white;">Shop Now <i class="fi-rs-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="banner-img wow fadeIn animated">
+                            <img src="/imgs/banner/men2.jpeg" alt="">
+                            <div class="banner-text">
+                                <span style="color: white;">Sale off</span>
+                                <h4 style="color: white;">Great Retro-9 <br>shoes</h4>
+                                <a href="/shop" style="color: white;">Shop Now <i class="fi-rs-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+        </section>
+       
+        
+        
+   
+        <section class="mb-50">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="banner-bg wow fadeIn animated" style="background-image: url('/imgs/banner/banner-8.jpg')">
+                            <div class="banner-content">
+                                <h5 class="text-grey-4 mb-15">Shop Today’s Deals</h5>
+                                <h2 class="fw-600">Happy <span class="text-brand">Mother's Day</span>. Big Sale Up to 40%</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mb-45">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 mb-sm-5 mb-md-0">
+                        <div class="banner-img wow fadeIn animated mb-md-4 mb-lg-0">
+                            <img src="/imgs/banner/woman1.png" alt="">
+                            <div class="banner-text">
+                                <span>Shoes Zone</span>
+                                <h4>Save 17% on <br>All Items</h4>
+                                <a href="#">Shop Now <i class="fi-rs-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-sm-5 mb-md-0">
+                        <h4 class="section-title style-1 mb-30 wow fadeIn animated">Deals & Outlet</h4>
+                        <div class="product-list-small wow fadeIn animated">
+                            <article class="row align-items-center">
+                                <figure class="col-md-4 mb-0">
+                                    <a href="#"><img src="/uploads/1695444899543.jpeg" alt=""></a>
+                                </figure>
+                                <div class="col-md-8 mb-0">
+                                    <h4 class="title-small">
+                                        <a href="#">retro-9 shoes</a>
+                                    </h4>
+                                    <div class="product-price">
+                                        <span>Rs : 11999 </span>
+                                        <span class="old-price">RS :8999</span>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="row align-items-center">
+                                <figure class="col-md-4 mb-0">
+                                    <a href="#"><img src="/uploads/1695444881418.webp" alt=""></a>
+                                </figure>
+                                <div class="col-md-8 mb-0">
+                                    <h4 class="title-small">
+                                        <a href="#">retro 9 running shoes</a>
+                                    </h4>
+                                    <div class="product-price">
+                                        <span>Rs : 7999 </span>
+                                        <span class="old-price">Rs : 9999</span>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="row align-items-center">
+                                <figure class="col-md-4 mb-0">
+                                    <a href="#"><img src="/uploads/1695444850105.webp" alt=""></a>
+                                </figure>
+                                <div class="col-md-8 mb-0">
+                                    <h4 class="title-small">
+                                        <a href="#">Multi-color Stripe shoes</a>
+                                    </h4>
+                                    <div class="product-price">
+                                        <span>Rs : 8000 </span>
+                                        <span class="old-price">Rs :10000</span>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-sm-5 mb-md-0">
+                        <h4 class="section-title style-1 mb-30 wow fadeIn animated">Top Selling</h4>
+                        <div class="product-list-small wow fadeIn animated">
+                            <article class="row align-items-center">
+                                <figure class="col-md-4 mb-0">
+                                    <a href="#"><img src="/uploads/1695542167980.webp" alt=""></a>
+                                </figure>
+                                <div class="col-md-8 mb-0">
+                                    <h4 class="title-small">
+                                        <a href="#">Geometric Printed angle boots</a>
+                                    </h4>
+                                    <div class="product-price">
+                                        <span>Rs : 13000 </span>
+                                        <span class="old-price">Rs : 15999</span>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="row align-items-center">
+                                <figure class="col-md-4 mb-0">
+                                    <a href="#"><img src="/uploads/1695566774198.webp" alt=""></a>
+                                </figure>
+                                <div class="col-md-8 mb-0">
+                                    <h4 class="title-small">
+                                        <a href="#">Print Patchwork Maxi spikes</a>
+                                    </h4>
+                                    <div class="product-price">
+                                        <span>Rs : 11000 </span>
+                                        <span class="old-price">Rs : 13999</span>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="row align-items-center">
+                                <figure class="col-md-4 mb-0">
+                                    <a href="#"><img src="/uploads/1695542127930.jpeg" alt=""></a>
+                                </figure>
+                                <div class="col-md-8 mb-0">
+                                    <h4 class="title-small">
+                                        <a href="#">Daisy Floral Print soccer boots</a>
+                                    </h4>
+                                    <div class="product-price">
+                                        <span>Rs : 11500 </span>
+                                        <span class="old-price">Rs : 9500</span>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="section-title style-1 mb-30 wow fadeIn animated">Hot Releases</h4>
+                        <div class="product-list-small wow fadeIn animated">
+                            <article class="row align-items-center">
+                                <figure class="col-md-4 mb-0">
+                                    <a href="#"><img src="/uploads/1696948731086.jpeg" alt=""></a>
+                                </figure>
+                                <div class="col-md-8 mb-0">
+                                    <h4 class="title-small">
+                                        <a href="#">Floral Print running spikes</a>
+                                    </h4>
+                                    <div class="product-price">
+                                        <span>Rs : 11999 </span>
+                                        <span class="old-price">Rs : 9999</span>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="row align-items-center">
+                                <figure class="col-md-4 mb-0">
+                                    <a href="#"><img src="/uploads/1697040890583.webp" alt=""></a>
+                                </figure>
+                                <div class="col-md-8 mb-0">
+                                    <h4 class="title-small">
+                                        <a href="#">Ruffled Solid running spikes</a>
+                                    </h4>
+                                    <div class="product-price">
+                                        <span>Rs : 12999 </span>
+                                        <span class="old-price">Rs : 14999</span>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="row align-items-center">
+                                <figure class="col-md-4 mb-0">
+                                    <a href="#"><img src="/uploads/1697554351755.webp" alt=""></a>
+                                </figure>
+                                <div class="col-md-8 mb-0">
+                                    <h4 class="title-small">
+                                        <a href="#">Darreb black retro9 boots</a>
+                                    </h4>
+                                    <div class="product-price">
+                                        <span>Rs : 12999 </span>
+                                        <span class="old-price">Rs : 11900</span>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="main">
+        <section class="newsletter p-30 text-white wow fadeIn animated">
+           
+        </section>
+        <section class="section-padding footer-mid">
+            <div class="container pt-15 pb-20">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="widget-about font-md mb-md-5 mb-lg-0">
+                            <div class="logo logo-width-1 wow fadeIn animated">
+                                <a href="#"><img src="/imgs/theme/rihanna.png" style="max-width: 90px; max-height: 70px;" alt="logo"></a>
+                            </div>
+                            <h5 class="mt-20 mb-10 fw-600 text-grey-4 wow fadeIn animated">Contact</h5>
+                            <p class="wow fadeIn animated">
+                                <strong>Address: </strong>562 Wellington Road, Street 32, San Francisco
+                            </p>
+                            <p class="wow fadeIn animated">
+                                <strong>Phone: </strong>+01 2222 365 /(+91) 01 2345 6789
+                            </p>
+                            <p class="wow fadeIn animated">
+                                <strong>Hours: </strong>10:00 - 18:00, Mon - Sat
+                            </p>
+                            <h5 class="mb-10 mt-30 fw-600 text-grey-4 wow fadeIn animated">Follow Us</h5>
+                            <div class="mobile-social-icon wow fadeIn animated mb-sm-5 mb-md-0">
+                                <a href="#"><img src="/imgs/theme/icons/icon-facebook.svg" alt=""></a>
+                                <a href="#"><img src="/imgs/theme/icons/icon-twitter.svg" alt=""></a>
+                                <a href="#"><img src="/imgs/theme/icons/icon-instagram.svg" alt=""></a>
+                                <a href="#"><img src="/imgs/theme/icons/icon-pinterest.svg" alt=""></a>
+                                <a href="#"><img src="/imgs/theme/icons/icon-youtube.svg" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3">
+                        <h5 class="widget-title wow fadeIn animated">About</h5>
+                        <ul class="footer-list wow fadeIn animated mb-sm-5 mb-md-0">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Delivery Information</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms &amp; Conditions</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Support Center</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2  col-md-3">
+                        <h5 class="widget-title wow fadeIn animated">My Account</h5>
+                        <ul class="footer-list wow fadeIn animated">
+                            <li><a href="#">Sign In</a></li>
+                            <li><a href="#">View Cart</a></li>
+                            <li><a href="#">My Wishlist</a></li>
+                            <li><a href="#">Track My Order</a></li>
+                            <li><a href="#">Help</a></li>
+                            <li><a href="#">Order</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4">
+                        <h5 class="widget-title wow fadeIn animated">Install App</h5>
+                        <div class="row">
+                            <div class="col-md-8 col-lg-12">
+                                <p class="wow fadeIn animated">From App Store or Google Play</p>
+                                <div class="download-app wow fadeIn animated">
+                                    <a href="#" class="hover-up mb-sm-4 mb-lg-0"><img class="active" src="/imgs/theme/app-store.jpg" alt=""></a>
+                                    <a href="#" class="hover-up"><img src="/imgs/theme/google-play.jpg" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-lg-12 mt-md-3 mt-lg-0">
+                                <p class="mb-20 wow fadeIn animated">Secured Payment Gateways</p>
+                                <img class="wow fadeIn animated" src="/imgs/theme/payment-method.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="container pb-20 wow fadeIn animated">
+            <div class="row">
+                <div class="col-12 mb-20">
+                    <div class="footer-bottom"></div>
+                </div>
+                <div class="col-lg-6">
+                    <p class="float-md-left font-sm text-muted mb-0">&copy; 2021, <strong class="text-brand">Evara</strong> - HTML Ecommerce Template </p>
+                </div>
+                <div class="col-lg-6">
+                    <p class="text-lg-end text-start font-sm text-muted mb-0">
+                        Designed by <a href="http://alithemes.com/" target="_blank">Alithemes.com</a>. All rights reserved
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Preloader Start -->
+  
+    <!-- Vendor JS-->
+    <script src="/js/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+    <script src="/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="/js/plugins/slick.js"></script>
+    <script src="/js/plugins/jquery.syotimer.min.js"></script>
+    <script src="/js/plugins/wow.js"></script>
+    <script src="/js/plugins/jquery-ui.js"></script>
+    <script src="/js/plugins/perfect-scrollbar.js"></script>
+    <script src="/js/plugins/magnific-popup.js"></script>
+    <script src="/js/plugins/select2.min.js"></script>
+    <script src="/js/plugins/waypoints.js"></script>
+    <script src="/js/plugins/counterup.js"></script>
+    <script src="/js/plugins/jquery.countdown.min.js"></script>
+    <script src="/js/plugins/images-loaded.js"></script>
+    <script src="/js/plugins/isotope.js"></script>
+    <script src="/js/plugins/scrollup.js"></script>
+    <script src="/js/plugins/jquery.vticker-min.js"></script>
+    <script src="/js/plugins/jquery.theia.sticky.js"></script>
+    <script src="/js/plugins/jquery.elevatezoom.js"></script>
+    <!-- Template  JS -->
+    <script src="/js/main.js"></script>
+    <script src="/js/shop.js"></script>
+    <script>
+         $(document).ready(function() {
+        const products = $('.product-cart-wrap');
+        const itemsPerPage = 6;
+        let currentPage = 1;
+        const totalPages = Math.ceil(products.length / itemsPerPage);
+
+        // Show the first page, hide the rest
+        showPage(currentPage);
+
+        // Handle pagination clicks
+        $('.page-link').on('click', function(e) {
+            e.preventDefault();
+            const targetPage = parseInt($(this).data('page'));
+            if (targetPage === currentPage) return; // Clicked on the current page
+
+            // Show the clicked page
+            showPage(targetPage);
+        });
+
+        function showPage(page) {
+            // Calculate the range of products to display for the given page
+            const startIndex = (page - 1) * itemsPerPage;
+            const endIndex = Math.min(startIndex + itemsPerPage, products.length);
+
+            // Show/hide products based on the page
+            products.hide();
+            products.slice(startIndex, endIndex).show();
+
+            // Update the current page
+            currentPage = page;
+        }
+    });
+    </script>
+
+   
+</body>
+
+
+<!-- Mirrored from wp.alithemes.com/html/evara/evara-frontend/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Aug 2021 15:25:49 GMT -->
+</html>

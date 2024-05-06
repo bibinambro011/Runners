@@ -1,0 +1,203 @@
+<%-include("../partials/userheader")-%>
+<section class="pt-150 pb-150">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 m-auto">
+       
+         
+            <div
+              class="login_wrap widget-taber-content p-30 background-white border-radius-5"
+            >
+              <div class="padding_eight_all bg-white">
+                <div class="heading_s1">
+                  <h3 class="mb-30">Add Address</h3>
+                </div>
+               
+                <form method="post" name="myform" action="/user_address" onsubmit="return validateForm()">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      id="username"
+                      name="name"
+                      placeholder="Username"
+                    />
+                    <span id="username-error" style="color: red;"></span>
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      id="city"
+                      name="city"
+                      placeholder="city"
+                    />
+                    <span id="city-error" style="color: red";></span>
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      id="state"
+                      name="state"
+                      placeholder="state"
+                    />
+                    <span id="state-error" style="color: red";></span>
+                  </div>
+                  <div>
+                    <label class="form-label">Address</label>
+                    <textarea placeholder="Type here" class="form-control" rows="4" name="address"></textarea>
+                    <span id="textarea-error" style="color: red";></span>
+
+                </div>
+                <div class="form-group">
+                    <input
+                      type="text"
+                      id="pincode"
+                      name="pincode"
+                      placeholder="pincode"
+                    />
+                    <span id="pincode-error" style="color: red";></span>
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      id="landmark"
+                      name="landmark"
+                      placeholder="landmark"
+                    />
+                    <span id="landmark-error" style="color: red";></span>
+                  </div>
+                  <div class="form-group">
+                    <input
+                    id="tel";
+                      type="tel"
+                      name="mobile" pattern="[0-9]{10}" 
+                      placeholder="Enter your mobile number"
+                    />
+                    <span id="tel-error" style="color: red";></span>
+                  </div>
+                  <div class="form-group">
+                    <input
+                    id="alternate-tel";
+                      type="tel"
+                      name="alt_mobile" pattern="[0-9]{10}" 
+                      placeholder="Enter your alternate mobile number"
+                    />
+                    <span id="alternatetel-error" style="color: red";></span>
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label">select addrese type</label>
+                    <select class="form-select" name="type">
+                        <option value="billing address">billing address</option>
+                        <option value="shipping address">shipping address</option>
+                       
+                        
+                    </select>
+                </div>
+                
+                
+              
+                  <div class="form-group">
+                    <button
+                      type="submit"
+                      class="btn btn-fill-out btn-block hover-up"
+                      name="login"
+                   
+                    >
+                      Submit &amp; Register
+                    </button>
+                  </div>
+                </form>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<!-- Your HTML form and elements remain the same -->
+
+<script>
+  function validateForm() {
+    var isValid = true;
+    
+    // Get form input elements
+    var name = document.getElementById("username");
+    var city = document.getElementById("city");
+    var state = document.getElementById("state");
+    var address = document.getElementsByName("address")[0];
+    var pincode = document.getElementById("pincode");
+    var landmark = document.getElementById("landmark");
+    var mobile = document.getElementById("tel");
+    var altMobile = document.getElementById("alternate-tel");
+    
+    // Get error message elements
+    var nameError = document.getElementById("username-error");
+    var cityError = document.getElementById("city-error");
+    var stateError = document.getElementById("state-error");
+    var textareaError = document.getElementById("textarea-error");
+    var pincodeError = document.getElementById("pincode-error");
+    var landmarkError = document.getElementById("landmark-error");
+    var mobileError = document.getElementById("tel-error");
+    var altMobileError = document.getElementById("alternatetel-error");
+    
+    // Reset error messages
+    nameError.textContent = "";
+    cityError.textContent = "";
+    stateError.textContent = "";
+    textareaError.textContent = "";
+    pincodeError.textContent = "";
+    landmarkError.textContent = "";
+    mobileError.textContent = "";
+    altMobileError.textContent = "";
+    
+    // Perform validation
+    if (name.value.trim() === "") {
+      nameError.textContent = "Name is required";
+      return isValid = false;
+    }
+    
+   else if (city.value.trim() === "") {
+      cityError.textContent = "City is required";
+     return isValid = false;
+    }
+    
+    else if (state.value.trim() === "") {
+      stateError.textContent = "State is required";
+      return isValid = false;
+    }
+    
+    else if (address.value.trim() === "") {
+      textareaError.textContent = "Address is required";
+     return isValid = false;
+    }
+    
+   else if (pincode.value.trim() === "" || !/^\d{6}$/.test(pincode.value.trim())) {
+      pincodeError.textContent = "Valid 6-digit pincode is required";
+      return isValid = false;
+    }
+    
+    else if (landmark.value.trim() === "") {
+      landmarkError.textContent = "Landmark is required";
+     return  isValid = false;
+    }
+    
+    else if (mobile.value.trim() === "" || !/^\d{10}$/.test(mobile.value.trim())) {
+      mobileError.textContent = "Valid 10-digit mobile number is required";
+      return isValid = false;
+    }
+    
+    else if (altMobile.value.trim() === "" || !/^\d{10}$/.test(mobile.value.trim())) {
+      altMobileError.textContent = "Valid 10-digit alternate mobile number is required";
+      return isValid = false;
+    }
+      return isValid;
+    
+    
+    
+  }
+  </script>
+  
+
+<%-include("../partials/userfooter")-%>

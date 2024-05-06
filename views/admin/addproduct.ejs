@@ -1,0 +1,210 @@
+<%-include("../partials/adminheader")-%>
+
+        <section class="content-main">
+            <div class="row">
+                <div class="col-9">
+                    <div class="content-header">
+                        <h2 class="content-title">Add New Product</h2>
+                       
+                    </div>
+                </div>
+                <form action="/admin/productadd" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+                <div class="col-lg-6">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <label for="product_title" class="form-label">Product title</label>
+                                <input type="text" placeholder="Type here" class="form-control" id="product_title" name="name">
+                                <span id="namespan" style="color:red"></span>
+                            </div>
+                            <div class="row gx-3">
+                                <div class="col-md-4  mb-3">
+                                    <label for="product_sku" class="form-label">size</label>
+                                    <input type="text" placeholder="Type here" class="form-control" id="product_sku" name="size">
+                                    <span id="sizespan" style="color: red;"></span>
+                                </div>
+                                <div class="col-md-4  mb-3">
+                                    <label for="product_color" class="form-label">price</label>
+                                    <input type="text" placeholder="Type here" class="form-control" id="product_color" name="price">
+                                    <span id="pricespan" style="color: red;"></span>
+                                </div>
+                                <div class="col-md-4  mb-3">
+                                    <label for="product_size" class="form-label">selling price</label>
+                                    <input type="text" placeholder="Type here" class="form-control" id="product_size" name="selling_price">
+                                    <span id="selling_price_span" style="color: red;"></span>
+                                </div>
+                            </div>
+                           
+                            <div class="mb-4">
+                                <label class="form-label">Brand</label>
+                                <select class="form-select" name="brand">
+                                    <option value="ADIDAS">ADIDAS</option>
+                                    <option value="NIKE">NIKE</option>
+                                    <option value="PUMA">PUMA</option>
+                                    <option value="ASICS">ASICS</option>
+                                    <option value="UNDER ARMOUR">UNDER ARMOUR</option>
+                                    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="product_brand" class="form-label">stock</label>
+                            <input type="text" placeholder="Type here" class="form-control" id="product_brand" name="stock">
+                            <span id="stockspan" style="color: red;"></span>
+                        </div>
+                    </div>
+                    </div> <!-- card end// -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div>
+                                <label class="form-label">Description</label>
+                                <textarea placeholder="Type here" class="form-control" rows="4" name="description"></textarea>
+                                <span id="descriptionspan" style="color: red;"></span>
+                            </div>
+                        </div>
+                    </div> <!-- card end// -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div>
+                                <label class="form-label">Images</label>
+                                <input
+                                type="file"
+                                id="productImage"
+                                name="images"
+                                accept="image/*"
+                                multiple
+                              
+                              />
+                              <span id="imagespan" style="color: red;"></span>
+                            </div>
+                        </div>
+                    </div> <!-- card end// -->
+                </div>
+                <div class="col-lg-3">
+                    <div class="card mb-4">
+                       
+                            <div class="mb-4">
+                                <label class="form-label">gender</label>
+                                <input type="text" placeholder="Type here" class="form-control" name="gender">
+                                <span id="genderspan"></span>
+                               
+                            </div>
+                            
+                           
+                            <div class="mb-4">
+                                <label class="form-label">Categories</label>
+                                <select class="form-select" name="category">
+                                    <% categorydata.forEach(category => { %>
+                                      <option value="<%= category._id %>"><%= category.name %></option>
+                                    <% }); %>
+                                  </select>
+                            </div>
+                            
+                           
+                    
+                        </div>
+                        <button type="submit" class="btn btn-primary">submit</button>
+                    </form>
+                    </div> 
+                </div>
+            </div>
+        </section>
+      
+        <script>
+    function validateForm() {
+        // Validate product title
+        let productTitle = document.getElementById('product_title').value;
+        if (productTitle.trim() === '') {
+        
+            document.getElementById("namespan").innerHTML="Please enter a product title."
+            return false;
+        }
+
+        // Validate product size
+        let productSize = document.getElementById('product_sku').value;
+        if (productSize.trim() === '') {
+            document.getElementById("sizespan").innerHTML="Please enter the product size."
+            return false;
+        }
+
+        // Validate product price
+        let productPrice = document.getElementById('product_color').value;
+        if (productPrice.trim() === '') {
+            document.getElementById("pricespan").innerHTML="Please enter a product price."
+            return false;
+        }
+        if (productPrice <=0 || isNaN(productPrice) ) {
+            document.getElementById("pricespan").innerHTML="Please provide a valid price"
+            return false;
+        }
+
+        // Validate selling price
+        let sellingPrice = document.getElementById('product_size').value;
+        if (sellingPrice.trim() === '') {
+            document.getElementById("selling_price_span").innerHTML="Please enter a product selling price."
+            return false;
+        }
+        if (sellingPrice <=0 || isNaN(sellingPrice)) {
+            document.getElementById("selling_price_span").innerHTML="Please provide a valid price"
+            return false;
+        }
+
+        // Validate brand
+        let brand = document.querySelector('select[name="brand"]').value;
+        if (brand.trim() === '') {
+            alert('Please select a brand.');
+            return false;
+        }
+
+        // Validate stock
+        let stock = document.getElementById('product_brand').value;
+        if (stock.trim() === '') {
+            document.getElementById("stockspan").innerHTML="Please enter a product stock."
+            return false;
+        }
+
+        // Validate description
+        let description = document.querySelector('textarea[name="description"]').value;
+        if (description.trim() === '') {
+            document.getElementById("descriptionspan").innerHTML="Please enter a product description."
+            return false;
+        }
+
+        // Validate images
+        let images = document.getElementById('productImage').files;
+        if (images.length === 0) {
+            document.getElementById("imagespan").innerHTML="Please enter a product image."
+            return false;
+        }
+        if (images.length > 3) {
+            document.getElementById("imagespan").innerHTML="only 3 images are allowed to add"
+            return false;
+        }
+
+
+        // Validate gender
+        let gender = document.querySelector('input[name="gender"]').value;
+        if (gender.trim() === '') {
+            document.getElementById("genderspan").innerHTML="Please enter a gender ."
+            return false;
+        }
+
+        // Validate category
+        let category = document.querySelector('select[name="category"]').value;
+        if (category.trim() === '') {
+            alert('Please select a category.');
+            return false;
+        }
+
+        return true; // Form is valid
+    }
+
+    // Function to hide the associated span when input is clicked
+
+
+</script>
+
+
+
+
+<%-include("../partials/adminfooter")-%>
