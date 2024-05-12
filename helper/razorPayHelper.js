@@ -4,11 +4,14 @@ const Order = require('../model/orderSchema');
 require("dotenv").config();
 
 var instance = new Razorpay({
-    key_id:'rzp_test_Q7ihmFOtXoqBDe',
-    key_secret: 'jG2msJP2eDEVdV6E7peUXdPR',
+   //  key_id:'rzp_test_Q7ihmFOtXoqBDe',
+   //  key_secret: 'jG2msJP2eDEVdV6E7peUXdPR',
+    key_id:'rzp_test_9CEMr0p0borLvv',
+    key_secret: 'Ki2cAMKxf2JxKvJRQh2Xiq6U'
   });
 
   const generateRazorPay = async(orderId,total)=>{
+   console.log("generate razorpay called")
     return new Promise((resolve,reject)=>{
        var options = {
           amount: total *100,
@@ -26,7 +29,7 @@ var instance = new Razorpay({
  const verifyOnlinePayment = async(details)=>{
    console.log('VerifyOnlinPayment: ',details);
    return new Promise((resolve,reject)=>{
-      let hmac = Crypto.createHmac('sha256','jG2msJP2eDEVdV6E7peUXdPR');
+      let hmac = Crypto.createHmac('sha256','Ki2cAMKxf2JxKvJRQh2Xiq6U');
      
       hmac.update(details.payment.razorpay_order_id+'|'+details.payment.razorpay_payment_id);
       // Converted to string format
