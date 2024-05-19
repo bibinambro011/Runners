@@ -5,24 +5,20 @@ const category = require("../model/categorySchema");
 const cartCollection = require("../model/cartSchema");
 const offerCollection=require("../model/referralOfferSchema")
 const bcrypt = require("bcrypt");
-const twilio = require("twilio");
 const { userexist } = require("../middleware/userAuth");
 const { json } = require("express/lib/response");
 const Order = require("../model/orderSchema");
+
+
 require("dotenv").config();
 
-const accountSid = "AC7ed272bfc72e23f5ea62dde1140be05b";
-const authToken = "58b139fb5d740b49a36f8f967f3c0cc9";
-const serviceSid="VAe65c655cb619967cc167a5f1d80aa8f1";
-
-
-const client = twilio(accountSid, authToken);
-let generatedotp = "";
 
 
 let data;
+let generatedOtp;
 
 const user_registration = async (req, res) => {
+  console.log(req.body)
   const username = req.body.username;
   const email = req.body.email;
   const password = req.body.password;
@@ -38,7 +34,7 @@ const user_registration = async (req, res) => {
   };
 
 
-  const recipientPhoneNumber = `+91${phone}`;
+  // const recipientPhoneNumber = `+91${phone}`;
 
   // Validate phone number (simple length check)
   if (phone.length !== 10) {
@@ -59,19 +55,61 @@ const user_registration = async (req, res) => {
       password: hashedPassword, // Store the hashed password
       phone,
     });
+   
+const nodemailer = require('nodemailer');
 
-    const message = await client.verify.v2.services(serviceSid)
-    .verifications
-    .create({
-      to: '+91' + phone,
-      channel: 'sms',
+const generateOtp = () => {
+    return Math.floor(100000 + Math.random() * 900000).toString();
+};
+const testEmail = data.email;
+
+
+
+const generateMail = async (email) => {
+    const otp = generateOtp();
+    console.log("otp is =>", otp);
+    
+    const transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: 'bibindasmessi@gmail.com',
+            pass: 'amyq ipki zrkl vmtn', // Use application-specific password or OAuth2 for better security
+        }
     });
+    
+    // Email data including the OTP
+    const mailOptions = {
+        from: 'bibindasmessi@gmail.com',
+        to: email, // Using the provided email parameter
+        subject: 'Gmail Verification',
+        text: `Your OTP for verification is: ${otp}`, // Include the OTP in the email text
+    };
+    
+    return new Promise((resolve, reject) => {
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                reject(error.message); // Reject the promise with the error message
+            } else {
+                resolve(otp); // Resolve the promise with the OTP
+            }
+        });
+    });
+};
 
-    setTimeout(() => {
-      generatedotp = null;
-    }, 30000);
+generateMail(testEmail).then(otp => {
+  generatedOtp=otp
+  console.log('OTP sent:', otp);
+}).catch(error => {
+  console.error('Error sending email:', error);
+})
 
-    res.render("user/otp.ejs", { otp:message }); // Render the OTP page
+
+
+    // setTimeout(() => {
+    //   generatedotp = null;
+    // }, 30000);
+
+    res.render("user/otp.ejs"); // Render the OTP page
   } catch (error) {
     console.error("Error sending OTP:", error);
     res.render("user/login.ejs", {
@@ -113,13 +151,9 @@ const verify_otp = async (req, res) => {
 
 
   const otp = req.query.otp;
-    const verifyOTP = await client.verify.v2
-      .services(serviceSid)
-      .verificationChecks.create({
-        to: `+91${data.phone}`,
-        code: otp,
-      })
-    if (verifyOTP.valid) {
+  const verifyOTP= (generatedOtp==otp)? true:false
+  
+    if (verifyOTP) {
       isOtpVerified = true;
       const hashedPassword = await bcrypt.hash(data.password, 10); // Hash the password
 

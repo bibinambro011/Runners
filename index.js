@@ -42,6 +42,6 @@ app.get('*', (req, res) => {
 });
 
 db.connectToDatabase();
-app.listen(3000, () => {
+app.listen(4002, () => {
   console.log("listening to port 3000")
 });
