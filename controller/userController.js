@@ -72,8 +72,8 @@ const generateMail = async (email) => {
     const transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-            user: 'bibindasmessi@gmail.com',
-            pass: 'amyq ipki zrkl vmtn', // Use application-specific password or OAuth2 for better security
+            user: process.env.EMAIL,
+            pass: process.env.PASSKEY, // Use application-specific password or OAuth2 for better security
         }
     });
     
