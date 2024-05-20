@@ -7,6 +7,7 @@ const userRoute = require("./route/userRoute");
 const adminroutes = require("./route/adminRoute");
 const nocache = require("nocache");
 const loger = require("morgan");
+require('dotenv').config();
 const Swal = require('sweetalert2');
 
 const controller = require("./controller/userController");
@@ -43,5 +44,6 @@ app.get('*', (req, res) => {
 
 db.connectToDatabase();
 app.listen(4002, () => {
+
   console.log("listening to port 3000")
 });

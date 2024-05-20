@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-require("dotenv").config();
-console.log("env =>", process.env. DB_URL);
+
+console.log("env =>", process.env.ACCOUNT_SID);
 
 const dbOptions = {
   useNewUrlParser: true,
