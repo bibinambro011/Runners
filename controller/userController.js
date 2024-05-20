@@ -7,6 +7,8 @@ const offerCollection=require("../model/referralOfferSchema")
 const bcrypt = require("bcrypt");
 const { userexist } = require("../middleware/userAuth");
 const { json } = require("express/lib/response");
+const nodemailer = require('nodemailer');
+
 const Order = require("../model/orderSchema");
 
 
@@ -56,7 +58,6 @@ const user_registration = async (req, res) => {
       phone,
     });
    
-const nodemailer = require('nodemailer');
 
 const generateOtp = () => {
     return Math.floor(100000 + Math.random() * 900000).toString();
@@ -104,11 +105,6 @@ generateMail(testEmail).then(otp => {
 })
 
 
-
-    // setTimeout(() => {
-    //   generatedotp = null;
-    // }, 30000);
-
     res.render("user/otp.ejs"); // Render the OTP page
   } catch (error) {
     console.error("Error sending OTP:", error);
@@ -119,26 +115,62 @@ generateMail(testEmail).then(otp => {
 };
 
 const regenerateOtp = async (req, res) => {
-  const recipientPhoneNumber = `+91${data.phone}`;
 
-  // Validate phone number (simple length check)
   if (data.phone.length !== 10) {
     return res.render("user/register.ejs", {
       errordata: "Invalid phone number",
     });
   }
 
+const generateOtp = () => {
+  return Math.floor(100000 + Math.random() * 900000).toString();
+};
+
   // let otp = generateOtp();
 
   try {
-    const message = await client.verify.v2.services(serviceSid)
-    .verifications
-    .create({
-      to: '+91' + data. phone,
-      channel: 'sms',
-    });
+    console.log("called==>")
 
-    res.render("user/otp.ejs", { otp :message}); // Render the OTP page
+    const generateMail = async (email) => {
+      const otp = generateOtp();
+  
+      
+      const transporter = nodemailer.createTransport({
+          service: 'Gmail',
+          auth: {
+              user: process.env.EMAIL,
+              pass: process.env.PASSKEY, // Use application-specific password or OAuth2 for better security
+          }
+      });
+      
+      // Email data including the OTP
+      const mailOptions = {
+          from: 'bibindasmessi@gmail.com',
+          to: email, // Using the provided email parameter
+          subject: 'Gmail Verification',
+          text: `Your OTP for verification is: ${otp}`, // Include the OTP in the email text
+      };
+      
+      return new Promise((resolve, reject) => {
+          transporter.sendMail(mailOptions, (error, info) => {
+              if (error) {
+                  reject(error.message); // Reject the promise with the error message
+              } else {
+                  resolve(otp); // Resolve the promise with the OTP
+              }
+          });
+      });
+  };
+  
+  generateMail(data.email).then(otp => {
+    generatedOtp=otp
+    console.log('OTP sent:', otp);
+  }).catch(error => {
+    console.error('Error sending email:', error);
+  })
+
+
+    res.render("user/otp.ejs"); // Render the OTP page
   } catch (error) {
     console.error("Error sending OTP:", error);
     res.render("user/register.ejs", {
@@ -146,7 +178,6 @@ const regenerateOtp = async (req, res) => {
     });
   }
 };
-
 const verify_otp = async (req, res) => {
 
 
