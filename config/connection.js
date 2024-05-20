@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
-
-console.log("env =>", process.env.ACCOUNT_SID);
-
+require('dotenv').config();
 const dbOptions = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -9,7 +7,7 @@ const dbOptions = {
 
 const connectToDatabase = () => {
   mongoose
-    .connect("mongodb+srv://bibinambro011:2qDagDFW2ZkPAtaR@cluster0.kfuoxau.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
+    .connect(process.env.MONGO_URL, {
       useUnifiedTopology: true,
       useNewUrlParser: true,
     })

@@ -43,7 +43,7 @@ app.get('*', (req, res) => {
 });
 
 db.connectToDatabase();
-app.listen(4002, () => {
+app.listen(process.env.PORT, () => {
 
-  console.log("listening to port 3000")
+  console.log(`listening to port ${process.env.PORT}`)
 });
